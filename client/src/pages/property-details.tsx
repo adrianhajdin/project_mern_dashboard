@@ -1,24 +1,27 @@
 /* eslint-disable no-restricted-globals */
 import { Typography, Box, Stack } from '@pankod/refine-mui';
-import { useDelete, useGetIdentity, useOne } from '@pankod/refine-core';
+import { useDelete, useGetIdentity, useShow } from '@pankod/refine-core';
 import { useParams, useNavigate } from '@pankod/refine-react-router-v6';
-import { ChatBubble, Delete, Edit, MoreHorizRounded, Phone, Place, Star } from '@mui/icons-material';
+import { ChatBubble, Delete, Edit, Phone, Place, Star } from '@mui/icons-material';
 
 import { CustomButton } from 'components';
 
+function checkImage(url: any) {
+  let img = new Image();
+  img.src = url;
+  return img.width !== 0 && img.height !== 0;
+}
+
 const PropertyDetails = () => {
   const navigate = useNavigate();
+  const { data: user } = useGetIdentity();
+  const { queryResult } = useShow();
+  const { mutate } = useDelete();
   const { id } = useParams();
 
-  const { data: user } = useGetIdentity();
-  const { mutate } = useDelete();
+  const { data, isLoading, isError } = queryResult;
 
-  const { data, isLoading, isError } = useOne({
-    resource: 'api/v1/properties',
-    id: id as string,
-  });
-
-  const propertyDetails = data?.data ?? [];
+  const propertyDetails = data?.data ?? {};
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -34,11 +37,13 @@ const PropertyDetails = () => {
     const response = confirm('Are you sure you want to delete this property?');
     if (response) {
       mutate({
-        resource: 'api/v1/properties',
+        resource: 'properties',
         id: id as string,
+      }, {
+        onSuccess: () => {
+          navigate('/properties');
+        },
       });
-
-      navigate('/properties');
     }
   };
 
@@ -110,7 +115,8 @@ const PropertyDetails = () => {
 
             <Stack mt={2} justifyContent="center" alignItems="center" textAlign="center">
               <img
-                src={propertyDetails.creator.avatar}
+                src={checkImage(propertyDetails.creator.avatar) ? propertyDetails.creator.avatar : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
+                alt="avatar"
                 width={90}
                 height={90}
                 style={{ borderRadius: '100%', objectFit: 'cover' }}
@@ -157,7 +163,7 @@ const PropertyDetails = () => {
 
           <Stack>
             <img
-              src="https://iili.io/H0mfmCl.png"
+              src="https://serpmedia.org/scigen/images/googlemaps-nyc-standard.png?crc=3787557525"
               width="100%"
               height={306}
               style={{ borderRadius: 10, objectFit: 'cover' }}

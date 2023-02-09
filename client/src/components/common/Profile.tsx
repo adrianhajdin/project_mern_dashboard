@@ -4,6 +4,12 @@ import { Box, Stack, Typography } from '@pankod/refine-mui';
 import { ProfileProps, PropertyProps } from 'interfaces/common';
 import PropertyCard from './PropertyCard';
 
+function checkImage(url: any) {
+  let img = new Image();
+  img.src = url;
+  return img.width !== 0 && img.height !== 0;
+}
+
 const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
   <Box>
     <Typography fontSize={25} fontWeight={700} color="#11142D">{type} Profile</Typography>
@@ -28,14 +34,13 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
           alt="abstract"
           className="my_profile-bg"
         />
-
         <Box
           flex={1}
           sx={{ marginTop: { md: '58px' }, marginLeft: { xs: '20px', md: '0px' } }}
         >
           <Box flex={1} display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap="20px">
             <img
-              src={avatar}
+              src={checkImage(avatar) ? avatar : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
               width={78}
               height={78}
               alt="user_profile"

@@ -5,6 +5,7 @@ export interface CustomButtonProps {
     color: string,
     fullWidth?: boolean,
     icon?: ReactNode,
+    disabled?: boolean,
     handleClick?: () => void
 }
 
@@ -28,20 +29,11 @@ export interface PropertyProps {
 
 export interface FormProps {
     type: string,
-    formValues: {
-        title: string,
-        description: string,
-        propertyType: string,
-        location: string,
-        price: number,
-        photo?: string
-    },
-    propertyImage: {
-        name: string,
-        url: string
-    },
-    loading: boolean,
-    handleOnChange: (name, e) => void,
+    register: any,
+    onFinish: (values: FieldValues) => Promise<void | CreateResponse<BaseRecord> | UpdateResponse<BaseRecord>>,
+    formLoading: boolean,
+    handleSubmit: FormEventHandler<HTMLFormElement> | undefined,
     handleImageChange: (file) => void,
-    handleSubmit: (e) => void
+    onFinishHandler: (data: FieldValues) => Promise<void> | void,
+    propertyImage: { name: string, url: string },
 }

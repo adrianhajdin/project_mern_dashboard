@@ -5,6 +5,12 @@ import { Link } from '@pankod/refine-react-router-v6'
 
 import { AgentCardProp, InfoBarProps } from 'interfaces/agent'
 
+function checkImage(url: any) {
+  let img = new Image();
+  img.src = url;
+  return img.width !== 0 && img.height !== 0;
+}
+
 const InfoBar = ({ icon, name }: InfoBarProps) => (
   <Stack flex={1} minWidth={{ xs: '100%', sm: 300 }} gap={1.5} direction="row">
     {icon}
@@ -37,7 +43,7 @@ const AgentCard = ({ id, name, email, avatar, noOfProperties }: AgentCardProp) =
       }}
     >
       <img 
-        src={avatar}
+        src={checkImage(avatar) ? avatar : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
         alt="user"
         width={90}
         height={90}

@@ -7,7 +7,7 @@ const AgentProfile = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useOne({
-    resource: 'api/v1/users',
+    resource: 'users',
     id: id as string
   })
 
