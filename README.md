@@ -13,5 +13,5 @@ Alongside building this application, you'll learn how to use the most in-demand 
 6. Provide a quick and easy way for your users to log in and register using Google ****Auth
 7. And most importantly, you’ll learn how to build React-based CRUD applications incredibly quickly using refine.
 
-Developed by @adrianhajdin (JavaScript Mastery).
+Developed by [@adrianhajdin](https://github.com/adrianhajdin) ([JavaScript Mastery](https://www.youtube.com/@javascriptmastery)).
 Launch your development career with project-based coaching - https://www.jsmastery.pro
