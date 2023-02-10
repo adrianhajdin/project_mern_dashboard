@@ -1,5 +1,5 @@
 # Build and Deploy a Full Stack MERN Dashboard App With CRUD, Auth, and Charts Using Refine
-![Refine Dashboard](IMG URL)
+![Refine Dashboard](https://i.ibb.co/9H1yCch/Thumbnail-9.jpg)
 
 With modern material design, a fully functional dashboard, a property management page, and a users page - both connected to our database and a profile page that connects the two, this video is the updated full-stack MERN course you’ve all been waiting for.
 
